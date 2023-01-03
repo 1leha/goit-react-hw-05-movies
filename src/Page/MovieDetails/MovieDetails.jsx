@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { tmdAPI } from '../../utils/apiService';
 import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 // import { Box } from 'components/Box';
-import Card from 'components/Card/Card';
+import Card from '../../components/Card';
 
 const movieAPI = new tmdAPI();
 
@@ -20,7 +20,7 @@ const MovieDetails = () => {
   }, [movieId]);
   const backLink = location.state?.from ?? '';
 
-  console.log('movieDetales :>> ', movieDetales);
+  // console.log('movieDetales :>> ', movieDetales);
   // const { genres, id, title, posterPath, vote_average, overview } =
 
   return (
@@ -29,10 +29,10 @@ const MovieDetails = () => {
       <Card movieDetales={movieDetales} />
 
       <NavLink to="cast" state={{ from: backLink }}>
-        cast
+        Cast
       </NavLink>
       <NavLink to="reviews" state={{ from: backLink }}>
-        reviews
+        Reviews
       </NavLink>
       <Outlet />
     </main>

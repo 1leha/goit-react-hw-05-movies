@@ -22,13 +22,15 @@ const Card = ({
           <h2>{title}</h2>
           <div>
             <p>User score: {userScore}</p>
+
             <h3>Overview</h3>
             <div>{overview}</div>
-            <h3>Genres</h3>
+
+            <h4>Genres</h4>
             <div>{movieGeners}</div>
           </div>
         </Box>
-      </Box>{' '}
+      </Box>
     </>
   );
 };

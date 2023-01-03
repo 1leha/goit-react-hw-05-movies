@@ -1,11 +1,14 @@
-import GlobalStyle from 'components/GlobalStyle';
-import Layout from 'components/Layout/Layout';
-import MovieDetails from 'components/MovieDetails';
-import Home from 'components/Page/Home';
-import Movie from 'components/Page/Movie';
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { tmdAPI } from '../../utils/apiService';
+import GlobalStyle from '../GlobalStyle';
+
+import Layout from '../Layout';
+import Home from '../../Page/Home';
+import Movie from '../../Page/Movie';
+import MovieDetails from '../../Page/MovieDetails';
+import Cast from '../Cast';
+import Reviews from '../Reviews';
 
 const movieAPI = new tmdAPI();
 
@@ -32,12 +35,11 @@ const App = () => {
           <Route index element={<Home popularMovies={popularMovies} />} />
           <Route path="movies" element={<Movie />} />
           <Route path="movies/:movieId" element={<MovieDetails />}>
-            <Route path="cast" element={<div>Cast</div>} />
-            <Route path="reviews" element={<div>Reviews</div>} />
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
           </Route>
-          {/* <Route path="*" element={<Home popularMovies={popularMovies} />} /> */}
+          <Route path="*" element={<Home popularMovies={popularMovies} />} />
         </Route>
-        <Route path="*" element={<Layout />} />
       </Routes>
     </>
   );
