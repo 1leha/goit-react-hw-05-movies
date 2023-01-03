@@ -2,13 +2,14 @@
 import { useState, useEffect } from 'react';
 import { tmdAPI } from '../../utils/apiService';
 import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
+// import { Box } from 'components/Box';
+import Card from 'components/Card/Card';
 
 const movieAPI = new tmdAPI();
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetales, setMovieDetales] = useState({});
-  const [backLink, setBackLink] = useState('');
   const location = useLocation();
 
   useEffect(() => {
@@ -16,29 +17,25 @@ const MovieDetails = () => {
       setMovieDetales(await movieAPI.getMovie(id));
     }
     fetchMovie(movieId);
-
-    setBackLink(location.state?.from ?? '');
   }, [movieId]);
+  const backLink = location.state?.from ?? '';
 
-  //   console.log('movieDetales :>> ', movieDetales);
-  const { title, overview, genres } = movieDetales;
+  console.log('movieDetales :>> ', movieDetales);
+  // const { genres, id, title, posterPath, vote_average, overview } =
 
   return (
-    <>
+    <main>
       <NavLink to={backLink}>Go back</NavLink>
-      <h2>{title}</h2>
-      <main>
-        <h3>Overview</h3>
-        <div>{overview}</div>
-      </main>
-      <NavLink to="cast" state={{ from: location }}>
+      <Card movieDetales={movieDetales} />
+
+      <NavLink to="cast" state={{ from: backLink }}>
         cast
       </NavLink>
-      <NavLink to="reviews" state={{ from: location }}>
+      <NavLink to="reviews" state={{ from: backLink }}>
         reviews
       </NavLink>
       <Outlet />
-    </>
+    </main>
   );
 };
 

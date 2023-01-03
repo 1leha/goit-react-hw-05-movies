@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiKey, baseURL } from './options';
+import { apiKey, baseURL, basePosterURL } from './options';
 
 axios.defaults.baseURL = baseURL;
 
@@ -22,12 +22,19 @@ export class tmdAPI {
     return await trending;
   };
 
-  getMovie = async id => {
+  getMovie = async movieId => {
     const movie = await axios.get(
-      `movie/${id}?api_key=${apiKey}&language=en-US`
+      `movie/${movieId}?api_key=${apiKey}&language=en-US`
     );
-    // console.log('movie :>> ', movie.data);
-    return await movie.data;
+
+    const { genres, id, title, poster_path, vote_average, overview } =
+      await movie.data;
+    const posterPath = (await poster_path)
+      ? `${basePosterURL + poster_path}`
+      : 'https://via.placeholder.com/200x300';
+
+    return { genres, id, title, posterPath, vote_average, overview };
+
     //   https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
   };
 }
