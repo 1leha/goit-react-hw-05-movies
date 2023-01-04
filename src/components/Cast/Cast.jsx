@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { tmdAPI } from '../../utils/apiService';
