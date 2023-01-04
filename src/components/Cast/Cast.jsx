@@ -10,38 +10,44 @@ const movieAPI = new tmdAPI();
 const Cast = () => {
   const { movieId } = useParams();
   const [actors, setActors] = useState([]);
+  const [status, setStatus] = useState('idle');
 
   useLayoutEffect(() => {
-    async function fetchActors() {
-      setActors(await movieAPI.getActors(movieId));
-    }
+    setStatus('idle');
 
-    fetchActors();
+    movieAPI.getActors(movieId).then(actors => {
+      if (actors.length === 0) {
+        setStatus('empty');
+        return;
+      }
+      setStatus('suсcess');
+      setActors(actors);
+    });
   }, [movieId]);
 
-  if (actors.length === 0) return;
+  if (status === 'idle') return;
 
-  return (
-    <>
-      {actors.length > 0 ? (
-        <ul>
-          {actors.map(({ id, name, character, actorPhotoPath }) => {
-            return (
-              <li key={id}>
-                <article>
-                  <img src={actorPhotoPath} alt={name} />
-                  <p>{name}</p>
-                  <p>{character}</p>
-                </article>
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
-        <div>We have no idea who starred in this movie.</div>
-      )}
-    </>
-  );
+  if (status === 'empty') {
+    return <div>We have no idea who starred in this movie.</div>;
+  }
+
+  if (status === 'suсcess') {
+    return (
+      <ul>
+        {actors.map(({ id, name, character, actorPhotoPath }) => {
+          return (
+            <li key={id}>
+              <article>
+                <img src={actorPhotoPath} alt={name} />
+                <p>{name}</p>
+                <p>{character}</p>
+              </article>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
 };
 
 // Cast.propTypes = {}

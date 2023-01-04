@@ -10,15 +10,29 @@ const movieAPI = new tmdAPI();
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
+  const [status, setStatus] = useState('idle');
 
-  // movieAPI.getReviews(movieId).then(setReviews);
   useEffect(() => {
-    movieAPI.getReviews(movieId).then(setReviews);
-  }, []);
+    setStatus('idle');
+    movieAPI.getReviews(movieId).then(reviews => {
+      if (reviews.length === 0) {
+        setStatus('empty');
+        return;
+      }
+      setStatus('suсcess');
+      setReviews(reviews);
+    });
+  }, [movieId]);
 
-  return (
-    <section>
-      {reviews.length > 0 ? (
+  if (status === 'idle') return;
+
+  if (status === 'empty') {
+    return <div>We have no reviews for this film yet.</div>;
+  }
+
+  if (status === 'suсcess') {
+    return (
+      <section>
         <ul>
           {reviews.map(({ id, author, content }) => {
             return (
@@ -29,11 +43,9 @@ const Reviews = () => {
             );
           })}
         </ul>
-      ) : (
-        <div>We have no reviews for this film yet.</div>
-      )}
-    </section>
-  );
+      </section>
+    );
+  }
 };
 
 // Reviews.propTypes = {}
