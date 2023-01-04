@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { tmdAPI } from '../../utils/apiService';
@@ -12,7 +12,7 @@ const Cast = () => {
   const [actors, setActors] = useState([]);
   const [status, setStatus] = useState('idle');
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setStatus('idle');
 
     movieAPI.getActors(movieId).then(actors => {
