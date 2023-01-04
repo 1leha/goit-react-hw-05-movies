@@ -69,16 +69,16 @@ export class tmdAPI {
   };
 
   searchMovie = async query => {
-    query = query.trim().toLowerCase();
+    // query = query.trim().toLowerCase();
 
-    // console.log('query :>> ', query);
+    // console.log('searchMovie query :>> ', query);
 
     const response = await axios.get(
       `search/movie/?api_key=${apiKey}&language=en-US&query=${query}`
     );
 
-    console.log('response :>> ', response);
+    // console.log('response :>> ', response);
 
-    // return await response.data.results;
+    return await response.data.results;
   };
 }

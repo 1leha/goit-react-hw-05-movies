@@ -1,27 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import PropTypes from 'prop-types'
 
-import { tmdAPI } from '../../utils/apiService';
-const movieAPI = new tmdAPI();
-
-const SearchForm = () => {
-  const [value, setValue] = useState('');
-
-  const handlerSubmit = e => {
-    e.preventDefault();
-    const searchQuery = e.target.elements.search.value;
-    // console.log('Subbmit', e.target.elements.search.value);
-    movieAPI.searchMovie(searchQuery);
-    setValue('');
-  };
-
-  const handlerChange = e => {
-    setValue(e.target.value);
-  };
-
+const SearchForm = ({ onSubmit }) => {
   return (
-    <form onSubmit={handlerSubmit} autoComplete="off">
-      <input type="text" name="search" value={value} onChange={handlerChange} />
+    <form onSubmit={onSubmit} autoComplete="off">
+      <input type="text" name="search" />
       <button type="subbmit">Search</button>
     </form>
   );
