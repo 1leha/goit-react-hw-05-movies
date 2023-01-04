@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
-import { Link, useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
+import FilmList from '../../components/FilmList';
 
-const Home = ({ popularMovies }) => {
-  const location = useLocation();
+import { tmdAPI } from '../../utils/apiService';
+const movieAPI = new tmdAPI();
+
+const Home = () => {
+  // const location = useLocation();
+  // console.log('location Home :>> ', location);
+
+  const [popularMovies, setPopularMovies] = useState([]);
+
+  useEffect(() => {
+    async function fetchPopularMovies() {
+      setPopularMovies(await movieAPI.getTrendingMovies());
+    }
+
+    fetchPopularMovies();
+  }, []);
+
   return (
     <>
-      <h2>Home</h2>
-      <ul>
-        {popularMovies.map(({ id, title }) => (
-          <li key={id}>
-            <Link to={`movies/${id}`} state={{ from: location }}>
-              {title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <h2>Tranding today</h2>
+      <FilmList films={popularMovies} path="movies/" />
     </>
   );
 };
