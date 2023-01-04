@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { tmdAPI } from '../../utils/apiService';
@@ -11,7 +11,7 @@ const Cast = () => {
   const { movieId } = useParams();
   const [actors, setActors] = useState([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     async function fetchActors() {
       setActors(await movieAPI.getActors(movieId));
     }
@@ -19,25 +19,27 @@ const Cast = () => {
     fetchActors();
   }, [movieId]);
 
-  if (!actors) return;
-
-  // console.log('actors CAST :>> ', actors);
+  if (actors.length === 0) return;
 
   return (
     <>
-      <ul>
-        {actors.map(({ id, name, character, actorPhotoPath }) => {
-          return (
-            <li key={id}>
-              <article>
-                <img src={actorPhotoPath} alt={name} />
-                <p>{name}</p>
-                <p>{character}</p>
-              </article>
-            </li>
-          );
-        })}
-      </ul>
+      {actors.length > 0 ? (
+        <ul>
+          {actors.map(({ id, name, character, actorPhotoPath }) => {
+            return (
+              <li key={id}>
+                <article>
+                  <img src={actorPhotoPath} alt={name} />
+                  <p>{name}</p>
+                  <p>{character}</p>
+                </article>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <div>We have no idea who starred in this movie.</div>
+      )}
     </>
   );
 };

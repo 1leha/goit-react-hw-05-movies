@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { tmdAPI } from '../../utils/apiService';
@@ -11,13 +11,10 @@ const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
 
+  // movieAPI.getReviews(movieId).then(setReviews);
   useEffect(() => {
-    async function fetchReviews() {
-      setReviews(await movieAPI.getReviews(movieId));
-    }
-
-    fetchReviews();
-  }, [movieId]);
+    movieAPI.getReviews(movieId).then(setReviews);
+  }, []);
 
   return (
     <section>
@@ -33,7 +30,7 @@ const Reviews = () => {
           })}
         </ul>
       ) : (
-        'We have no reviews for this film yet.'
+        <div>We have no reviews for this film yet.</div>
       )}
     </section>
   );
