@@ -1,19 +1,22 @@
+import FilmItem from '../FilmItem';
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 // import PropTypes from 'prop-types'
 
-const FilmList = ({ films }) => {
+const FilmList = ({ films, path = '' }) => {
   const location = useLocation();
 
   return (
     <ul>
-      {films.map(({ id, original_title }) => {
+      {films.map(({ id, title }) => {
         return (
-          <li key={id}>
-            <NavLink to={`${id}`} state={{ from: location }}>
-              {original_title}
-            </NavLink>
-          </li>
+          <FilmItem
+            key={id}
+            id={id}
+            title={title}
+            linkTo={`${path}${id}`}
+            linkFrom={{ from: location }}
+          />
         );
       })}
     </ul>
