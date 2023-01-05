@@ -55,7 +55,7 @@ export class tmdAPI {
 
   searchMovie = async query => {
     const response = await axios.get(
-      `search/movie/?api_key=${apiKey}&language=en-US&query=${query}`
+      `search/movie/?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${query}`
     );
 
     return await response.data.results;
