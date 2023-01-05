@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { apiKey, basePosterURL } from './options';
+import { apiKey, baseURL, basePosterURL } from './options';
 
-axios.defaults.baseURL = 'https://api.themoviedb.org/3';
+axios.defaults.baseURL = baseURL;
 
 export class tmdAPI {
   init = async () => {
@@ -55,7 +55,7 @@ export class tmdAPI {
 
   searchMovie = async query => {
     const response = await axios.get(
-      `search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${query}`
+      `search/movie?api_key=${apiKey}&language=en-US&query=${query}`
     );
 
     return await response.data.results;
