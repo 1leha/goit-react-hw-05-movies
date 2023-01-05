@@ -1,19 +1,25 @@
 import React from 'react';
+import { Box } from '../Box';
 
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
+import { Container } from '../Common/Common.styled';
+import { HeaderStyled, HeaderLink } from './Header.styled';
 
 const Header = () => {
   const location = useLocation();
 
   return (
-    <header>
-      <nav>
-        <NavLink to="/" state={{ from: location }}>
-          Home
-        </NavLink>
-        <NavLink to="movies">Movie</NavLink>
-      </nav>
-    </header>
+    <HeaderStyled>
+      <Container>
+        <Box as="nav" display="flex" gridGap="20px" w="100%">
+          <HeaderLink to="/" state={{ from: location }}>
+            Home
+          </HeaderLink>
+          <HeaderLink to="movies">Movie</HeaderLink>
+        </Box>
+      </Container>
+    </HeaderStyled>
   );
 };
 

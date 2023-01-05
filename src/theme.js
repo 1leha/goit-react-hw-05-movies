@@ -7,10 +7,9 @@ export const theme = {
   colors: {
     appBGColor: '#eaeeff',
 
-    primary: 'black',
-    secondary: 'white',
-    third: '#797979',
-    notification: '#999999',
+    primary: '#4a89dc',
+    active: 'tomato',
+    hovered: '#2a63ae',
 
     titleBG: '#65472e',
     footerBG: '#65472e',
@@ -51,8 +50,7 @@ export const theme = {
 
   shadows: {
     standart: `0px 0px 10px #11111155`,
-    buttonsUp: `inset 5px 5px 5px #00000022`,
-    buttonsDown: `inset 10px 10px 10px #00000011`,
+    toBottom: `0px 5px 3px #00000009`,
   },
 
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
@@ -60,6 +58,8 @@ export const theme = {
   sizes: {
     wholeHeight: '100vh',
   },
+
+  transitions: 'color 0.3s ease-in',
 };
 
 // Моя шпаргалка

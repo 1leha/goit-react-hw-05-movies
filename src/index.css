@@ -20,3 +20,7 @@ ul {
   margin: 0;
   padding: 0;
 }
+.dammy {
+  display: flex;
+  gap: 10px;
+}
