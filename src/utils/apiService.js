@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { apiKey, baseURL, basePosterURL } from './options';
+import { apiKey, basePosterURL } from './options';
 
-axios.defaults.baseURL = baseURL;
+axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 export class tmdAPI {
   init = async () => {
