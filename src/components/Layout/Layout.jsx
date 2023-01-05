@@ -1,4 +1,6 @@
+import { Suspense } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
+
 // import PropTypes from 'prop-types'
 
 const Layout = () => {
@@ -14,7 +16,9 @@ const Layout = () => {
           <NavLink to="movies">Movie</NavLink>
         </nav>
       </header>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

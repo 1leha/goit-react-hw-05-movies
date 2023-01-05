@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { tmdAPI } from '../../utils/apiService';
+import { renderMashineStatus } from '../../utils/options';
 
 // import PropTypes from 'prop-types'
 
@@ -10,27 +11,27 @@ const movieAPI = new tmdAPI();
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
-  const [status, setStatus] = useState('idle');
+  const [status, setStatus] = useState(renderMashineStatus.IDLE);
 
   useEffect(() => {
-    setStatus('idle');
+    setStatus(renderMashineStatus.IDLE);
     movieAPI.getReviews(movieId).then(reviews => {
       if (reviews.length === 0) {
-        setStatus('empty');
+        setStatus(renderMashineStatus.EMPTY);
         return;
       }
-      setStatus('suсcess');
+      setStatus(renderMashineStatus.SUСCESS);
       setReviews(reviews);
     });
   }, [movieId]);
 
-  if (status === 'idle') return;
+  if (status === renderMashineStatus.IDLE) return;
 
-  if (status === 'empty') {
+  if (status === renderMashineStatus.EMPTY) {
     return <div>We have no reviews for this film yet.</div>;
   }
 
-  if (status === 'suсcess') {
+  if (status === renderMashineStatus.SUСCESS) {
     return (
       <section>
         <ul>

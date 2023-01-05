@@ -1,5 +1,5 @@
 // import PropTypes from 'prop-types'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { tmdAPI } from '../../utils/apiService';
 import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 // import { Box } from 'components/Box';
@@ -34,7 +34,9 @@ const MovieDetails = () => {
       <NavLink to="reviews" state={{ from: backLink }}>
         Reviews
       </NavLink>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </main>
   );
 };

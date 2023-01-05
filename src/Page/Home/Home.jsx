@@ -7,9 +7,6 @@ import { tmdAPI } from '../../utils/apiService';
 const movieAPI = new tmdAPI();
 
 const Home = () => {
-  // const location = useLocation();
-  // console.log('location Home :>> ', location);
-
   const [popularMovies, setPopularMovies] = useState([]);
 
   useEffect(() => {

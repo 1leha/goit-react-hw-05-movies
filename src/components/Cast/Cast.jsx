@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { tmdAPI } from '../../utils/apiService';
+import { renderMashineStatus } from '../../utils/options';
 
 // import PropTypes from 'prop-types'
 
@@ -10,28 +11,28 @@ const movieAPI = new tmdAPI();
 const Cast = () => {
   const { movieId } = useParams();
   const [actors, setActors] = useState([]);
-  const [status, setStatus] = useState('idle');
+  const [status, setStatus] = useState(renderMashineStatus.IDLE);
 
   useEffect(() => {
-    setStatus('idle');
+    setStatus(renderMashineStatus.IDLE);
 
     movieAPI.getActors(movieId).then(actors => {
       if (actors.length === 0) {
-        setStatus('empty');
+        setStatus(renderMashineStatus.EMPTY);
         return;
       }
-      setStatus('suсcess');
+      setStatus(renderMashineStatus.SUСCESS);
       setActors(actors);
     });
   }, [movieId]);
 
-  if (status === 'idle') return;
+  if (status === renderMashineStatus.IDLE) return;
 
-  if (status === 'empty') {
+  if (status === renderMashineStatus.EMPTY) {
     return <div>We have no idea who starred in this movie.</div>;
   }
 
-  if (status === 'suсcess') {
+  if (status === renderMashineStatus.SUСCESS) {
     return (
       <ul>
         {actors.map(({ id, name, character, actorPhotoPath }) => {
@@ -40,7 +41,7 @@ const Cast = () => {
               <article>
                 <img src={actorPhotoPath} alt={name} />
                 <p>{name}</p>
-                <p>{character}</p>
+                <p>Character: {character}</p>
               </article>
             </li>
           );
