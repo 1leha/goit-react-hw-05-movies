@@ -33,7 +33,7 @@ const MovieDetails = () => {
 
       <Card movieDetales={movieDetales} />
 
-      <Box as="section">
+      <Box as="section" pb={4}>
         <Container>
           <h3>Additional info</h3>
           <Box as="ul" display="flex" gridGap={3}>
