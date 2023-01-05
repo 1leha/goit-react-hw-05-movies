@@ -1,7 +1,8 @@
-import FilmItem from '../FilmItem';
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
+
+import FilmItem from '../FilmItem';
 
 const FilmList = ({ films, path = '' }) => {
   const location = useLocation();
@@ -12,7 +13,6 @@ const FilmList = ({ films, path = '' }) => {
         return (
           <FilmItem
             key={id}
-            id={id}
             title={title}
             linkTo={`${path}${id}`}
             linkFrom={{ from: location }}

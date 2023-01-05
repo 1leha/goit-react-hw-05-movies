@@ -1,10 +1,9 @@
+import ReviewsList from 'components/ReviewsList';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { tmdAPI } from '../../utils/apiService';
 import { renderMashineStatus } from '../../utils/options';
-
-// import PropTypes from 'prop-types'
 
 const movieAPI = new tmdAPI();
 
@@ -34,21 +33,10 @@ const Reviews = () => {
   if (status === renderMashineStatus.SUСCESS) {
     return (
       <section>
-        <ul>
-          {reviews.map(({ id, author, content }) => {
-            return (
-              <li key={id}>
-                <h4>{author}</h4>
-                <p>{content}</p>
-              </li>
-            );
-          })}
-        </ul>
+        <ReviewsList reviews={reviews} />
       </section>
     );
   }
 };
-
-// Reviews.propTypes = {}
 
 export default Reviews;

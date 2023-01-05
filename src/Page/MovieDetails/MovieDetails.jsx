@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types'
 import { useState, useEffect, Suspense } from 'react';
 import { tmdAPI } from '../../utils/apiService';
 import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
@@ -11,6 +10,8 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetales, setMovieDetales] = useState({});
   const location = useLocation();
+  const backLink = location.state?.from ?? '';
+  const isMovieDetalesEmpty = !Object.keys(movieDetales).length;
 
   useEffect(() => {
     async function fetchMovie(id) {
@@ -18,10 +19,8 @@ const MovieDetails = () => {
     }
     fetchMovie(movieId);
   }, [movieId]);
-  const backLink = location.state?.from ?? '';
 
-  // console.log('movieDetales :>> ', movieDetales);
-  // const { genres, id, title, posterPath, vote_average, overview } =
+  if (isMovieDetalesEmpty) return;
 
   return (
     <main>
@@ -34,13 +33,12 @@ const MovieDetails = () => {
       <NavLink to="reviews" state={{ from: backLink }}>
         Reviews
       </NavLink>
+
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
     </main>
   );
 };
-
-// MovieDetails.propTypes = {}
 
 export default MovieDetails;

@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const SearchForm = ({ onSubmit }) => {
   return (
@@ -10,6 +10,6 @@ const SearchForm = ({ onSubmit }) => {
   );
 };
 
-// SearchForm.propTypes = {}
+SearchForm.propTypes = { onSubmit: PropTypes.func.isRequired };
 
 export default SearchForm;

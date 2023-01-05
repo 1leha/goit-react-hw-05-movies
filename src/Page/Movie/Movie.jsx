@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-// import PropTypes from 'prop-types'
 
 import SearchForm from '../../components/SearchForm';
 import FilmList from '../../components/FilmList';
@@ -39,7 +38,5 @@ const Movie = () => {
     </>
   );
 };
-
-// Movie.propTypes = {}
 
 export default Movie;
