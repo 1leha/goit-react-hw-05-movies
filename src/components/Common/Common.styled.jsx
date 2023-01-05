@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 100%;
+  width: 99%;
   margin: ${p => p.theme.space[0]}px auto;
-  padding: ${p => p.theme.space[0]}px ${p => p.theme.space[3]}px;
+  padding: ${p => p.theme.space[0]}px ${p => p.theme.space[4]}px;
 `;

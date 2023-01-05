@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+
 import FilmList from '../../components/FilmList';
+
+import { Container } from '../../components/Common/Common.styled';
 
 import { tmdAPI } from '../../utils/apiService';
 const movieAPI = new tmdAPI();
@@ -16,10 +19,10 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <Container>
       <h2>Tranding today</h2>
       <FilmList films={popularMovies} path="movies/" />
-    </>
+    </Container>
   );
 };
 

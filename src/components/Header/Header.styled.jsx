@@ -16,7 +16,7 @@ export const HeaderStyled = styled.header`
 export const HeaderLink = styled(NavLink)`
   font-size: ${p => p.theme.fontSizes.l};
   font-weight: ${p => p.theme.fontWeights.bold};
-  color: ${p => p.theme.colors.primary};
+  color: ${p => p.theme.colors.link};
   transition: ${p => p.theme.transitions};
 
   &.active {

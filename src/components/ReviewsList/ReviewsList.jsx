@@ -1,18 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Box } from '../Box';
+import {
+  ReviewsItemStyled,
+  ReviewsTitleStyled,
+  ReviewsContentStyled,
+} from './ReviewsList.styled';
+
 const ReviewsList = ({ reviews }) => {
   return (
-    <ul>
+    <Box as="ul" display="flex" flexDirection="column" gridGap={4}>
       {reviews.map(({ id, author, content }) => {
         return (
-          <li key={id}>
-            <h4>{author}</h4>
-            <p>{content}</p>
-          </li>
+          <ReviewsItemStyled key={id}>
+            <ReviewsTitleStyled>{author}</ReviewsTitleStyled>
+            <ReviewsContentStyled>{content}</ReviewsContentStyled>
+          </ReviewsItemStyled>
         );
       })}
-    </ul>
+    </Box>
   );
 };
 

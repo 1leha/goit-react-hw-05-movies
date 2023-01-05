@@ -3,6 +3,7 @@ import { Box } from 'components/Box';
 
 import PropTypes from 'prop-types';
 import MovieGenres from 'components/MovieGenres';
+import { Container } from 'components/Common/Common.styled';
 
 const Card = ({
   movieDetales: { genres, title, posterPath, vote_average, overview },
@@ -12,29 +13,32 @@ const Card = ({
     : 'No users votes';
 
   return (
-    <>
-      <Box display="flex" gridGap="20px">
-        <Box
-          width="200px"
-          height="300px"
-          overflow="hidden"
-          objectFit="cover"
-          flex="0 0 auto"
-        >
-          <img src={posterPath} alt={title} />
-        </Box>
-        <Box>
-          <h2>{title}</h2>
-          <p>User score: {userScore}</p>
+    <Box as="section" mb={5} pb={4} boxShadow="toBottom">
+      <Container>
+        <Box display="flex" gridGap="20px">
+          <Box
+            width="200px"
+            height="300px"
+            overflow="hidden"
+            objectFit="cover"
+            flex="0 0 auto"
+            borderRadius="standart"
+          >
+            <img src={posterPath} alt={title} />
+          </Box>
+          <Box>
+            <h2>{title}</h2>
+            <p>User score: {userScore}</p>
 
-          <h3>Overview</h3>
-          <div>{overview}</div>
+            <h3>Overview</h3>
+            <div>{overview}</div>
 
-          <h4>Genres</h4>
-          <MovieGenres genres={genres} />
+            <h4>Genres</h4>
+            <MovieGenres genres={genres} />
+          </Box>
         </Box>
-      </Box>
-    </>
+      </Container>
+    </Box>
   );
 };
 

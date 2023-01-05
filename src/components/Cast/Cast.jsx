@@ -1,6 +1,7 @@
-import ActorsList from 'components/ActorsList';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
+import ActorsList from '../ActorsList';
 
 import { tmdAPI } from '../../utils/apiService';
 import { renderMashineStatus } from '../../utils/options';

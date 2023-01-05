@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { FormStyled, InputStyled, ButtonStyled } from './SearchForm.styled';
+
 const SearchForm = ({ onSubmit }) => {
   return (
-    <form onSubmit={onSubmit} autoComplete="off">
-      <input type="text" name="search" />
-      <button type="subbmit">Search</button>
-    </form>
+    <FormStyled onSubmit={onSubmit} autoComplete="off">
+      <InputStyled type="text" name="search" />
+      <ButtonStyled type="subbmit">Search</ButtonStyled>
+    </FormStyled>
   );
 };
 

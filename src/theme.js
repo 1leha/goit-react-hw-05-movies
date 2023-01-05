@@ -5,18 +5,15 @@ export const theme = {
   },
 
   colors: {
-    appBGColor: '#eaeeff',
-
-    primary: '#4a89dc',
+    primary: 'black',
+    link: '#4a89dc',
     active: 'tomato',
-    hovered: '#2a63ae',
+    hovered: '#feb258',
 
-    titleBG: '#65472e',
-    footerBG: '#65472e',
+    backButton: '#efefef',
+    backButtonText: 'white',
 
-    good: '#dbfde3',
-    neutral: '#ffffd9',
-    bad: '#ffe7e7',
+    reviewBg: '#eeeeee',
   },
 
   fonts: {
@@ -44,7 +41,7 @@ export const theme = {
 
   radii: {
     none: 'none',
-    standart: '10px',
+    standart: '7px',
     rounded: '50%',
   },
 
@@ -59,7 +56,7 @@ export const theme = {
     wholeHeight: '100vh',
   },
 
-  transitions: 'color 0.3s ease-in',
+  transitions: 'all 0.2s ease-out',
 };
 
 // Моя шпаргалка

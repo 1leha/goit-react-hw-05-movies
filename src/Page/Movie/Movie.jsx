@@ -4,6 +4,8 @@ import { useSearchParams } from 'react-router-dom';
 import SearchForm from '../../components/SearchForm';
 import FilmList from '../../components/FilmList';
 
+import { Container } from '../../components/Common/Common.styled';
+
 import { tmdAPI } from '../../utils/apiService';
 
 const movieAPI = new tmdAPI();
@@ -32,10 +34,11 @@ const Movie = () => {
   }, [query]);
 
   return (
-    <>
+    <Container>
+      <h2>Find your movie</h2>
       <SearchForm onSubmit={handlerSubmit} />
       {searchResult.length > 0 && <FilmList films={searchResult} />}
-    </>
+    </Container>
   );
 };
 

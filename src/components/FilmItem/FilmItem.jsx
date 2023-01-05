@@ -1,15 +1,15 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
+import { FilmLinkStyled, FilmItemStyled } from './FilmItem.styled';
 
 const FilmItem = ({ title, linkTo, linkFrom }) => {
   return (
-    <li>
-      <NavLink to={linkTo} state={linkFrom}>
+    <FilmItemStyled>
+      <FilmLinkStyled to={linkTo} state={linkFrom}>
         {title}
-      </NavLink>
-    </li>
+      </FilmLinkStyled>
+    </FilmItemStyled>
   );
 };
 

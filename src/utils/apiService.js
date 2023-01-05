@@ -37,7 +37,7 @@ export class tmdAPI {
     const actors = await cast.map(({ id, name, character, profile_path }) => {
       const actorPhotoPath = profile_path
         ? `${basePosterURL + profile_path}`
-        : 'https://via.placeholder.com/200x300';
+        : 'https://via.placeholder.com/150x200';
 
       return { id, name, character, actorPhotoPath };
     });
