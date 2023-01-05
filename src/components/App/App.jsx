@@ -3,11 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 import GlobalStyle from '../GlobalStyle';
 
 import Layout from '../Layout';
-// import Home from '../../Page/Home';
-// import Movie from '../../Page/Movie';
-// import MovieDetails from '../../Page/MovieDetails';
-// import Cast from '../Cast';
-// import Reviews from '../Reviews';
 
 const Home = lazy(() => import('../../Page/Home'));
 const Movie = lazy(() => import('../../Page/Movie'));

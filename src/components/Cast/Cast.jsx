@@ -1,10 +1,9 @@
+import ActorsList from 'components/ActorsList';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { tmdAPI } from '../../utils/apiService';
 import { renderMashineStatus } from '../../utils/options';
-
-// import PropTypes from 'prop-types'
 
 const movieAPI = new tmdAPI();
 
@@ -33,24 +32,8 @@ const Cast = () => {
   }
 
   if (status === renderMashineStatus.SUСCESS) {
-    return (
-      <ul>
-        {actors.map(({ id, name, character, actorPhotoPath }) => {
-          return (
-            <li key={id}>
-              <article>
-                <img src={actorPhotoPath} alt={name} />
-                <p>{name}</p>
-                <p>Character: {character}</p>
-              </article>
-            </li>
-          );
-        })}
-      </ul>
-    );
+    return <ActorsList actors={actors} />;
   }
 };
-
-// Cast.propTypes = {}
 
 export default Cast;
