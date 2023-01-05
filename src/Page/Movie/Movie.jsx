@@ -26,11 +26,8 @@ const Movie = () => {
   };
 
   useEffect(() => {
-    async function fetchSearchingMovies(query) {
-      setSearchResult(await movieAPI.searchMovie(query));
-    }
-
-    query && fetchSearchingMovies(query);
+    if (!query) return;
+    movieAPI.searchMovie(query).then(setSearchResult);
   }, [query]);
 
   return (
